@@ -1,0 +1,88 @@
+<div class="customer-checkout">
+    <div class="customer-checkout-container">
+        <h1 class="checkout-header">Update Or Delete Goal</h1>
+        <div class="review-container">
+            <div class="customer-form-container">
+                <div class="form-header">
+                    <h4>Goal Details</h4>
+                </div>
+                <div class="customer-form">
+                    <form [formGroup]="checkoutForm" class="example-form" name="customer-form" (ngSubmit)="submitUpdate()" id="customer-form">
+                        <table class="example-full-width" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Goal name</mat-label>
+                                        <input formControlName="goalName" matInput name="goal-name">
+                                        <mat-error *ngIf="checkoutForm.get('goalName')?.hasError('required')"> Please enter a valid Goal Name </mat-error>
+                                        <mat-error *ngIf="checkoutForm.get('goalName')?.hasError('pattern')"> Please enter a valid Goal Name </mat-error>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="example-full-width" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Goal Description</mat-label>
+                                        <input matInput formControlName="goalDescription" name="goal-description">
+                                        <mat-error *ngIf="checkoutForm.get('goalDescription')?.hasError('required')"> Please enter a valid Goal Description </mat-error>
+                                        <mat-error *ngIf="checkoutForm.get('goalDescription')?.hasError('pattern')"> Please enter a valid Goal Description </mat-error>
+                                        <mat-error *ngIf="checkoutForm.get('goalDescription')?.hasError('minLength')"> Please enter a valid Goal Description </mat-error>
+
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="example-full-width" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Target Date</mat-label>
+                                        <input matInput [matDatepicker]="picker" (dateInput)="updateDate($event.value)" formControlName="targetDate">
+                                        <mat-error *ngIf="checkoutForm.get('targetDate')?.hasError('required')"> Must Enter Target Date </mat-error>
+                                        
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                        <table class="example-full-width" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Target Amount</mat-label>
+                                        <input matInput formControlName="targetAmount" name="target-amount">
+                                        <mat-error *ngIf="checkoutForm.get('targetAmount')?.hasError('required')"> Please enter a valid Target Amount </mat-error>
+                                        <mat-error *ngIf="checkoutForm.get('targetAmount')?.hasError('pattern')"> Please enter a valid Target Amount </mat-error>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Current Amount</mat-label>
+                                        <input matInput formControlName="currentAmount" name="current-amount">
+                                        <mat-error *ngIf="checkoutForm.get('currentAmount')?.hasError('required')"> Please enter a valid Current Amount </mat-error>
+                                        <mat-error *ngIf="checkoutForm.get('currentAmount')?.hasError('pattern')"> Please enter a valid Currentt Amount </mat-error>
+
+                                        
+                                    </mat-form-field>
+
+                                    
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <button class="select-btn" form="customer-form" type="submitUpdate">Update</button>
+                <button class="select-btn" (click)="deleteGoal()">Delete</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>

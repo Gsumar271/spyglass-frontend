@@ -1,0 +1,79 @@
+ <div class = "goal-container">
+    <form [formGroup]="goalForm" class="form-container">
+        <mat-card>
+          <mat-card-header>
+            <div *ngIf="!showUpdate">
+              <mat-card-title>Please Enter Goal Information</mat-card-title>
+            </div>
+            <div *ngIf="showUpdate">
+              <mat-card-title>Please Update Or Delete Goal</mat-card-title>
+            </div>      
+          </mat-card-header>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-md-12">
+                <mat-form-field class="full-width" appearance="fill">
+                  <input formControlName="goalName" matInput placeholder="Goal Name" [(ngModel)]="goal.name">
+                  <mat-error *ngIf="goalForm.get('goalName')?.hasError('required')"> Please enter a valid Goal Name </mat-error>
+                  <mat-error *ngIf="goalForm.get('goalName')?.hasError('pattern')"> Please enter a valid Goal Name </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <mat-form-field class="full-width" appearance="fill">
+                  <textarea  formControlName="goalDescription" matInput placeholder="Goal Description" [(ngModel)]="goal.description"></textarea>
+                  <mat-error *ngIf="goalForm.get('goalDescription')?.hasError('required')"> Please enter a valid Goal Description </mat-error>
+                  <mat-error *ngIf="goalForm.get('goalDescription')?.hasError('pattern')"> Please enter a valid Goal Description </mat-error>
+                  <mat-error *ngIf="goalForm.get('goalDescription')?.hasError('minLength')"> Please enter a valid Goal Description </mat-error>
+
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 top-padding">
+                    <mat-form-field class="full-width" appearance="fill" >
+                        <mat-label>Select Target Date</mat-label>
+                        <input  formControlName="targetDate" matInput [(ngModel)]="goal.targetDate" [matDatepicker]="picker">
+                        <mat-error *ngIf="goalForm.get('targetDate')?.hasError('required')"> Must Enter Target Date </mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>                  
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="full-width" appearance="fill">
+                    <input formControlName="targetAmount" matInput placeholder="Target Amount" [(ngModel)]="goal.targetAmount">
+                    <mat-error *ngIf="goalForm.get('targetAmount')?.hasError('required')"> Please enter a valid Target Amount </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="full-width" appearance="fill">
+                    <input  formControlName="currentAmount" matInput placeholder="Current Amount" [(ngModel)]="goal.currentAmount">
+                    <mat-error *ngIf="goalForm.get('currentAmount')?.hasError('required')"> Please enter a valid Current Amount </mat-error>
+                  
+                  </mat-form-field>
+                </div>
+              </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <div *ngIf="!showUpdate">
+              <button (click)="submitSave()" mat-raised-button color="primary">Save</button>
+            </div>
+            <div *ngIf="showUpdate">
+              <div class="content-row"> 
+                <div class="form-field update">
+                    <button class="submitUpdate" (click)="submitUpdate()" mat-raised-button color="primary">Update</button>
+               </div>
+               <div class="form-field delete">
+                    <button class="submitDelete" (click)="submitDelete()" mat-raised-button color="primary">Delete</button>
+                </div>
+            </div>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+
+  </div>

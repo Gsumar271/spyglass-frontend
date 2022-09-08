@@ -1,0 +1,26 @@
+<div class="goal-list-container">
+    <div class="goal-container">
+        <div class="goal-header">
+            <h1 class="title">Showing All The Goals</h1>
+        </div>
+        <div class="goals">
+            <div class="goal" *ngFor="let goal of goals">
+                <div class="goal-img-container"><img class="goal-img"
+                        src="../../assets/images/default-goal.png" alt=""></div>
+                <div class="goal-header">{{goal.name}} {{goal.description}} {{goal.targetAmount}}</div>
+                <div class="goal-pricing">
+                    <div class="price-info">
+
+                    </div>
+                    <div class="select">
+                        <button [attr.goal-id]="goal.id" [attr.goal-name]="goal.name"
+                            [attr.goal-description]="goal.description" [attr.goal-targetDate]="goal.targetDate"
+                            [attr.goal-targetAmount]="goal.targetAmount" [attr.goal-currentAmount]="goal.currentAmount"
+                            class="select-btn"
+                            (click)="submit($event)">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

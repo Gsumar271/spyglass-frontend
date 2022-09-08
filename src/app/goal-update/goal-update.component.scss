@@ -1,0 +1,87 @@
+
+.goal-container{
+    position: relative;
+    height: 100%;
+
+}
+
+.full-width{
+    width: 100%;
+}
+
+.top-padding{
+    padding-top: 3px;
+}
+
+.margin-left mat-radio-button:not(:first-child){
+    margin-left:10px;
+}
+
+.form-container{
+    margin: 100px;
+
+}
+ 
+.background-img{
+    position: static;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.background-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+.main-background {
+    height: 100%;
+}
+
+.content-row{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.clear-button{
+    color: #000;
+}
+.form-field{
+    margin-right: 20px;
+}
+
+button {
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 15px;
+    margin-bottom: 0;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    border: none;
+    color: #FFF;
+    line-height: 1.625;
+}
+
+.submitUpdate{
+    min-width: 165px;
+    min-height: 65px;
+    font-size: 18px!important;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #0eb411;
+    border: 2px solid #0eb411;
+    cursor: pointer;
+}
+
+.submitDelete{
+    min-width: 165px;
+    min-height: 65px;
+    font-size: 18px!important;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #b4140e;
+    border: 2px solid #b4140e;
+    cursor: pointer;
+}
