@@ -8,8 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./goal-list.component.scss']
 })
 export class GoalListComponent implements OnInit {
+
   goals: Array<any> = [];
   service: GoalApiService;
+  displayDate:any;
 
   constructor(service: GoalApiService, private router: Router) {
     this.service = service;
@@ -32,6 +34,13 @@ export class GoalListComponent implements OnInit {
 
     this.service.showUpdate = true;
     this.router.navigateByUrl('/goalupdate');
+  }
+
+  formatDate(d: any){
+     let date = d;
+     let dateTemp = new Date(String(date));
+     this.displayDate = (dateTemp.getMonth()+1) + "-" + (dateTemp.getDate()) +  "-" +  dateTemp.getFullYear();
+     return this.displayDate;
   }
 
 }

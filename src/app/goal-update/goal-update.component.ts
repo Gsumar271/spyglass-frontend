@@ -16,6 +16,7 @@ export class GoalUpdateComponent implements OnInit {
   goal: any = {};
   service: GoalApiService;
   showUpdate: boolean;
+  diffAmount: number = 0;
 
   constructor(service: GoalApiService, private formBuilder:FormBuilder, private router: Router) {
       this.service = service;
@@ -29,7 +30,8 @@ export class GoalUpdateComponent implements OnInit {
     goalDescription: new FormControl('', [Validators.pattern(/^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/), Validators.required, Validators.minLength(1)]),
     targetDate: new FormControl('', [Validators.required]),
     targetAmount: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    currentAmount: new FormControl('', [Validators.required, Validators.minLength(1)])
+    currentAmount: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    diffAmount: new FormControl('', [Validators.required])
 
   })
   // goalForm = this.formBuilder.group({
@@ -60,6 +62,7 @@ export class GoalUpdateComponent implements OnInit {
         this.goal.targetDate = this.service.goal.targetDate;
         this.goal.targetAmount = this.service.goal.targetAmount;
         this.goal.currentAmount = this.service.goal.currentAmount;
+        this.diffAmount = this.goal.targetAmount - this.goal.currentAmount;
 
       });
 
@@ -70,13 +73,14 @@ export class GoalUpdateComponent implements OnInit {
   submitSave(): void {
     let date = this.goal.targetDate;
     let dateTemp = new Date(String(date));
-    let setDate = dateTemp.getFullYear() + "-" + (dateTemp.getMonth() + 1) + "-" + dateTemp.getDate();
+    let setDate = dateTemp.getFullYear() + "-" + (dateTemp.getMonth() + 1) + "-" + (dateTemp.getDate()+1);
     this.goal.targetDate = setDate;
 
    // console.log("save", this.goal);
 
     this.service.createGoal(this.goal).subscribe(data => {
-        this.goal = data;
+      alert("Goal created!");
+      this.goal = data;
     })
 
     this.router.navigateByUrl('/home');
@@ -88,12 +92,13 @@ export class GoalUpdateComponent implements OnInit {
 
     let date = this.goal.targetDate;
     let dateTemp = new Date(String(date));
-    let setDate = dateTemp.getFullYear() + "-" + (dateTemp.getMonth() + 1) + "-" + dateTemp.getDate();
+    let setDate = dateTemp.getFullYear() + "-" + (dateTemp.getMonth() + 1) + "-" + (dateTemp.getDate()+1);
     this.goal.targetDate = setDate;
 
    // console.log("update", this.goal);
 
     this.service.updateGoal(this.goal).subscribe(data => {
+      alert("Goal Updated!");
       this.goal = data;
     })
 
@@ -105,7 +110,9 @@ export class GoalUpdateComponent implements OnInit {
 
   submitDelete(): void{
 
-    this.service.deleteGoal(this.service.goalId).subscribe(data => {});
+    this.service.deleteGoal(this.service.goalId).subscribe(data => {
+      alert("Goal Deleted!");
+    });
     this.router.navigateByUrl('/home');
 
 

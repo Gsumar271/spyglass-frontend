@@ -13,6 +13,7 @@
             <div class="row">
               <div class="col-md-12">
                 <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Goal Name</mat-label>
                   <input formControlName="goalName" matInput placeholder="Goal Name" [(ngModel)]="goal.name">
                   <mat-error *ngIf="goalForm.get('goalName')?.hasError('required')"> Please enter a valid Goal Name </mat-error>
                   <mat-error *ngIf="goalForm.get('goalName')?.hasError('pattern')"> Please enter a valid Goal Name </mat-error>
@@ -22,6 +23,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <mat-form-field class="full-width" appearance="fill">
+                  <mat-label>Goal Description</mat-label>
                   <textarea  formControlName="goalDescription" matInput placeholder="Goal Description" [(ngModel)]="goal.description"></textarea>
                   <mat-error *ngIf="goalForm.get('goalDescription')?.hasError('required')"> Please enter a valid Goal Description </mat-error>
                   <mat-error *ngIf="goalForm.get('goalDescription')?.hasError('pattern')"> Please enter a valid Goal Description </mat-error>
@@ -45,12 +47,14 @@
             <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Target Amount</mat-label>
                     <input formControlName="targetAmount" matInput placeholder="Target Amount" [(ngModel)]="goal.targetAmount">
                     <mat-error *ngIf="goalForm.get('targetAmount')?.hasError('required')"> Please enter a valid Target Amount </mat-error>
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Current Amount</mat-label>
                     <input  formControlName="currentAmount" matInput placeholder="Current Amount" [(ngModel)]="goal.currentAmount">
                     <mat-error *ngIf="goalForm.get('currentAmount')?.hasError('required')"> Please enter a valid Current Amount </mat-error>
                   
@@ -66,6 +70,9 @@
               <div class="content-row"> 
                 <div class="form-field update">
                     <button class="submitUpdate" (click)="submitUpdate()" mat-raised-button color="primary">Update</button>
+               </div>
+               <div>
+                <h2><b>{{"Amount left to reach goal:  " + diffAmount}}</b></h2>
                </div>
                <div class="form-field delete">
                     <button class="submitDelete" (click)="submitDelete()" mat-raised-button color="primary">Delete</button>

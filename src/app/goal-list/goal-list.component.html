@@ -7,7 +7,13 @@
             <div class="goal" *ngFor="let goal of goals">
                 <div class="goal-img-container"><img class="goal-img"
                         src="../../assets/images/default-goal.png" alt=""></div>
-                <div class="goal-header">{{goal.name}} {{goal.description}} {{goal.targetAmount}}</div>
+                <div class="goal-header">
+                    <h1><b>{{goal.name}}</b></h1> 
+                    <p><b>{{goal.description}}</b></p> 
+                    <p>
+                        <b>{{"Target date: " + formatDate(goal.targetDate)}}</b>
+                    </p>  
+                </div>
                 <div class="goal-pricing">
                     <div class="price-info">
 
